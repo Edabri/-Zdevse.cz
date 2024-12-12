@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zde Vše.cz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color:   #d0d3d4;
+            color: #333;
+        }
+        header {
+            background-color:  #ff2d00;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+        }
+        .menu-container {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+        .menu-button {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 2.5rem;
+            right: 0;
+            background-color: white;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: #333;
+            text-decoration: none;
+        }
+        .dropdown-menu a:hover {
+            background-color: #f4f4f9;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 600px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            z-index: 2000;
+        }
+        .modal-content {
+            margin: 1rem 0;
+        }
+        .modal-close {
+            display: block;
+            text-align: right;
+            cursor: pointer;
+            color: #6200ea;
+            font-size: 1.2rem;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 0.5rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.dropdown-menu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function showModal(contentId) {
+            const modal = document.getElementById('modal');
+            const content = document.getElementById(contentId).innerHTML;
+            modal.querySelector('.modal-content').innerHTML = content;
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+        }
+
+        window.addEventListener('click', function(e) {
+            const menu = document.querySelector('.dropdown-menu');
+            if (!e.target.matches('.menu-button')) {
+                menu.style.display = 'none';
+            }
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Zde Vše.cz</h1>
+        <div class="menu-container">
+            <button class="menu-button" onclick="toggleMenu()">&#x22EE;</button>
+            <div class="dropdown-menu">
+                <a href="#" onclick="showModal('content1')">co nesmíte dát jíst zvířeti(jakému koliv)</a>
+                <a href="#" onclick="showModal('content2')">Možnost 2</a>
+                <a href="#" onclick="showModal('content3')">Možnost 3</a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <p>najdeš tu sppoustu věcí napřáklad jak na co..atd.</p>
+        <p>Menu/Tři tečky.</p>
+    </main>
+    <div id="modal" class="modal">
+        <span class="modal-close" onclick="closeModal()">&times; Zavřít</span>
+        <div class="modal-content"></div>
+    </div>
+    <div id="content1" style="display: none;">
+        <h2>co nesmíte dát jíst zvířeti</h2>
+        <p>hodně nebezpečné potraviny pro kočky:
+       Cibule a česnek. ...
+       Syrová vejce, syrové maso a kosti. ...
+       Čokoláda a kofeinové nápoje. ...
+       Alkohol a syrové těsto. ...
+       Mléko a mléčné výrobky. ...
+       Hrozny a rozinky. ...
+       Krmivo pro psy. ... .
+..................................................
+
+       hodně nebezpečné potraviny pro psy:
+    ořechy.
+    cibule.
+    česnek.
+    kofein a nápoje s jeho obsahem.
+    slané jídlo.
+    kuřecí kosti.
+    zbytky lidského jídla (kořeněné, mastné, tučné, ostré)</p>
+    </div>
+    <div id="content2" style="display: none;">
+        <h2>Obsah pro Možnost 2</h2>
+        <p>Toto je obsah, který se zobrazí při výběru Možnost 2.</p>
+    </div>
+    <div id="content3" style="display: none;">
+        <h2>Obsah pro Možnost 3</h2>
+        <p>Toto je obsah, který se zobrazí při výběru Možnost 3.</p>
+    </div>
+    <footer>
+        &copy; 2024 Zde Vše.cz
+    </footer>
+</body>
+</html>
